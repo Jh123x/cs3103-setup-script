@@ -12,7 +12,7 @@ Host ocna0
 
 Host mini-internet
     User root
-    Port 20{group_number}
+    Port 2{group_number_padded}
     IdentityFile ~/.ssh/g{group_number}
     Hostname mini-internet
     ProxyJump ocna0
@@ -25,7 +25,8 @@ DESTINATION_SSH_PATH = os.path.expanduser("~/.ssh/g{group_number}")
 if __name__ == '__main__':
 
     # Get the group number
-    group = input('Group number gXX (Just key in XX): ').zfill(2)
+    group = input('Group number gXX (Just key in XX): ')
+    padded_group = group.zfill(3)
     if not group.isdigit():
         print('Group number must be a number.')
         exit(1)
@@ -42,7 +43,7 @@ if __name__ == '__main__':
 
     print("Writing to config file")
     with open(SSH_CONFIG_PATH, 'w') as f:
-        f.write(CONFIG_TEMPLATE.format(group_number=group))
+        f.write(CONFIG_TEMPLATE.format(padded_group=padded_group, group_number = (group)))
 
     print("Copying private key to ~/.ssh with CLRF replaced with LF")
     with open(key_file, 'r') as f:
