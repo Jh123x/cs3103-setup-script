@@ -58,8 +58,9 @@ if __name__ == '__main__':
     print("Setting permissions for private key")
     os.system("chmod 600 ~/.ssh/g{group_number}".format(group_number=group))
 
+    print("Done! You should be able to run `ssh mini-internet` to access the server now.")
     print("Logging into server")
     os.system("ssh mini-internet")
-    print("Done")
+    
 
 
