@@ -25,11 +25,14 @@ DESTINATION_SSH_PATH = os.path.expanduser("~/.ssh/g{group_number}")
 if __name__ == '__main__':
 
     # Get the group number
-    group = input('Group number gXX (Just key in XX): ')
+    group = input('Group number gXXX (Just key in XXX, you can omit 0s in front): ')
     padded_group = group.zfill(3)
     if not group.isdigit():
         print('Group number must be a number.')
         exit(1)
+
+    # Strip leading 0s
+    group = str(int(group))
 
     # Get file to private key
     key_file = input('Private key file: ')
