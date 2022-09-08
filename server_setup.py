@@ -12,7 +12,7 @@ Host ocna0
 
 Host mini-internet
     User root
-    Port 2{group_number_padded}
+    Port 2{padded_group}
     IdentityFile ~/.ssh/g{group_number}
     Hostname mini-internet
     ProxyJump ocna0
